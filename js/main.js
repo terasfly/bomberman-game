@@ -10,7 +10,7 @@ let bombs = [];
 console.log(bombs);
 console.log();
 
-
+import { bombExplode } from './bombExplosion.js';
 
 // Sukuriame bombos paveikslėlį
 let bombImage = new Image();
@@ -45,38 +45,53 @@ bombExploded.onload = function() {
 // Funkcija padėti bombą
 function setBomb() {
     bombs.push({ x: playerX, y: playerY });
-    setTimeout(bombExplode, 3000);
-    // if bomb and player are in the same position
-    // if (playerX === bombs[0].x && playerY === bombs[0].y) {
-    //     alert('Game over');
-    // }
+    setTimeout(() => bombExplode(bombs, walls, playerX, playerY, updateCanvas), 3000)
+
 
     updateCanvas();
 
 }
 
-function bombExplode(bomb) {
-    if (setBomb) {
+// Funkcija, kuri ištrina bombą ir prideda sprogimą
 
+// function bombExplode(bomb) {
+//     if (setBomb) {
+//         // Set the bomb image to explosion
+//         bombImage.src = 'images/explosion.png';
 
-        bombImage.src = 'images/explosion.png';
-        updateCanvas()
-        setTimeout(() => {
+//         setTimeout(() => {
+//             // Loop through walls to check if there is a wall within explosion range
+//             for (let i = 0; i < walls.length; i++) {
+//                 if (
+//                     (bombs[0].x + 100 === walls[i].x && bombs[0].y === walls[i].y) || // Right
+//                     (bombs[0].x - 100 === walls[i].x && bombs[0].y === walls[i].y) || // Left
+//                     (bombs[0].x === walls[i].x && bombs[0].y + 100 === walls[i].y) || // Down
+//                     (bombs[0].x === walls[i].x && bombs[0].y - 100 === walls[i].y) // Up
+//                 ) {
+//                     // Remove the wall from the walls array
+//                     walls.splice(i, 1);
+//                     console.log('Wall removed:', walls);
+//                     break; // Stop after removing one wall to avoid index issues
+//                 }
+//             }
 
-            if (playerX === bombs[0].x && playerY === bombs[0].y) {
-                alert('Game over');
-            }
-            bombs.pop();
+//             // Check if player is at bomb position
+//             if (playerX === bombs[0].x && playerY === bombs[0].y) {
+//                 alert('Game over');
+//             }
 
-            bombImage.src = 'images/bomb.png';
-            updateCanvas();
-        }, 1000);
+//             // Remove the bomb from the bombs array
+//             bombs.pop();
 
+//             // Reset the bomb image to the original
+//             bombImage.src = 'images/bomb.png';
 
+//             // Update the canvas to reflect all changes
+//             updateCanvas();
+//         }, 1000); // Delay for explosion effect
+//     }
+// }
 
-    }
-
-}
 // bombExplode()
 
 // Piešiame visas bombas
