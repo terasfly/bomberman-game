@@ -11,6 +11,7 @@ console.log(bombs);
 console.log();
 
 import { bombExplode } from './bombExplosion.js';
+import { drawGrid } from './grid.js';
 
 // Sukuriame bombos paveikslėlį
 let bombImage = new Image();
@@ -125,19 +126,19 @@ let move = 50; // Kiekvieno judesio dydis yra 50 pikselių
 // console.log(walls.x[i], walls.y[i]);
 
 // Pagrindinis grid'o piešimas
-function drawGrid() {
-    ctx.strokeStyle = 'white'; // Baltos linijos tarp kvadratų
-    ctx.lineWidth = 2; // Storesnė linija, jei reikia
+// function drawGrid() {
+//     ctx.strokeStyle = 'white'; // Baltos linijos tarp kvadratų
+//     ctx.lineWidth = 2; // Storesnė linija, jei reikia
 
-    for (let row = 0; row < gridSizeY; row++) {
-        for (let col = 0; col < gridSizeX; col++) {
-            ctx.fillStyle = 'yellow'; // Geltonas kvadrato fonas
-            ctx.fillRect(col * squareSize, row * squareSize, squareSize, squareSize);
-            ctx.strokeRect(col * squareSize, row * squareSize, squareSize, squareSize);
-        }
-    }
+//     for (let row = 0; row < gridSizeY; row++) {
+//         for (let col = 0; col < gridSizeX; col++) {
+//             ctx.fillStyle = 'yellow'; // Geltonas kvadrato fonas
+//             ctx.fillRect(col * squareSize, row * squareSize, squareSize, squareSize);
+//             ctx.strokeRect(col * squareSize, row * squareSize, squareSize, squareSize);
+//         }
+//     }
 
-}
+// }
 
 
 // Funkcija piešti žaidėją
@@ -171,7 +172,7 @@ function drawWalls() {
 // Funkcija atnaujinti Canvas (piešia grid, sienas, bombas ir žaidėją)
 function updateCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Išvalo Canvas
-    drawGrid(); // Pirma piešiame grid'ą (mėlyni kvadratai)
+    drawGrid(ctx, gridSizeX, gridSizeY, squareSize); // Pirma piešiame grid'ą (mėlyni kvadratai)
     // checkFixedBlock()
     drawWalls(); // Piešiame sienas (juoda spalva)
     // drawFixBlock()
